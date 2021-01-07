@@ -1,0 +1,111 @@
+*,*::before,*::after{
+  margin:0;
+  padding:0;
+}
+:root{
+  --cell-size:100px;
+  --mark-size:calc(var(--cell-size)*.9);
+}
+.board{
+  width:100vw;
+  height:100vh;
+  display:grid;
+  justify-content:center;
+  align-items:center;
+  align-content:center;
+  justify-items:center;
+  grid-template-columns:repeat(3,auto);
+}
+.cell{
+  width:var(--cell-size);
+  height:var(--cell-size);
+  border:1px solid black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  justify-items:center;
+  align-content:center;
+  position:relative;
+}
+
+.cell:first-child,.cell:nth-child(2),.cell:nth-child(3){
+  border-top:none;
+}
+
+.cell:first-child,.cell:nth-child(4),.cell:nth-child(7){
+  border-left:none;
+}
+
+.cell:last-child,.cell:nth-child(8),.cell:nth-child(7){
+  border-bottom:none;
+}
+.cell:last-child,.cell:nth-child(6),.cell:nth-child(3){
+  border-right:none;
+}
+
+.cell.X::before,.cell.X::after{
+  content:"";
+  width:calc(var(--mark-size)*.15);
+  height:var(--mark-size);
+  background:#000000;
+  position:absolute;
+}
+.cell.X::before{
+  transform:rotate(45deg);
+}
+.cell.X::after{
+  transform:rotate(-45deg);
+}
+.cell.O::before,.cell.O::after{
+  content:"";
+  border-radius:50%;
+  position:absolute;
+}
+.cell.O::before{
+  width:var(--mark-size);
+  height:var(--mark-size);
+  background: #000000;
+}
+.cell.O::after{
+  width:calc(var(--mark-size)*.75);
+  height:calc(var(--mark-size)*.75);
+  background:#FFFFFF;
+}
+
+.winningMessage{
+  display:none;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  justify-content:center;
+  justify-items:center;
+  align-items:center;
+  align-content:center;
+  flex-direction:column;
+  position:fixed;
+  background:rgba(0,0,0,.9);
+  color:#FFFFFF;
+  font-size:5rem;
+  font-family:cursive;
+  font-weight:bolder;
+}
+.winningMessage button{
+  font-size:3rem;
+  border-top-left-radius:12px;
+  border-top-right-radius:12px;
+  border-bottom-left-radius:12px;
+  border-bottom-right-radius:12px;
+  border:1px inset black;
+  border-radius:99999px;
+  padding:.25em .5em;
+}
+.winningMessage button:hover{
+  outline:none;
+  background:black;
+  border-color:white;
+  color:white;
+}
+.winningMessage.show{
+  display: flex;
+}
